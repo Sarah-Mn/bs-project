@@ -1,42 +1,56 @@
+import { useLogin } from "@/services/auth/login/login.mutations";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface LoginFormInputs {
-  email: string;
+  username: string;
   password: string;
   rememberMe: boolean;
 }
 
 export const useLoginForm = () => {
+  const router = useRouter();
+  const { mutate, isPending, error } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormInputs>({
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
       rememberMe: false,
     },
   });
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
-    // Mock API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const { username, password } = data;
 
-    console.log("Login data:", data);
-    alert("Login successful (mock)");
+    mutate(
+      { username, password },
+      {
+        onSuccess: (res) => {
+          console.log("Login success:", res);
+          // example:
+          localStorage.setItem("AccessToken", res?.accessToken);
+
+          router.push("/dashboard");
+        },
+      },
+    );
   };
 
   return {
     register,
     handleSubmit,
     errors,
-    isSubmitting,
     onSubmit,
     showPassword,
     setShowPassword,
+    isPending,
+    serverError: error,
   };
 };

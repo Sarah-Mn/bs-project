@@ -16,25 +16,22 @@ const LoginForm = () => {
     errors,
     showPassword,
     setShowPassword,
-    isSubmitting,
+    isPending,
+    serverError,
   } = useLoginForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="flex flex-col gap-y-5">
-        {/* Email */}
+        {/* Username */}
         <TextField
-          label="Email"
+          label="Username"
           fullWidth
-          type="email"
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Invalid email address",
-            },
+          type="username"
+          error={!!errors.username}
+          helperText={errors.username?.message}
+          {...register("username", {
+            required: "username is required",
           })}
         />
 
@@ -69,19 +66,22 @@ const LoginForm = () => {
         />
       </div>
 
+      {/* Server Error  */}
+      {serverError && (
+        <p className="text-red-500 bg-red-200 rounded-md py-1 px-4 text-sm">
+          Login failed. Please try again.
+        </p>
+      )}
+
       {/* Submit */}
       <Button
         type="submit"
         variant="contained"
         fullWidth
-        disabled={isSubmitting}
-        className="!mt-2"
+        disabled={isPending}
+        className="mt-2!"
       >
-        {isSubmitting ? (
-          <CircularProgress size={24} color="inherit" />
-        ) : (
-          "Login"
-        )}
+        {isPending ? <CircularProgress size={24} color="inherit" /> : "Login"}
       </Button>
     </form>
   );
