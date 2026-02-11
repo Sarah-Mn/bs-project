@@ -2,6 +2,7 @@ import { useLogin } from "@/services/auth/login/login.mutations";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { setCookie } from "cookies-next";
 
 interface LoginFormInputs {
   username: string;
@@ -34,8 +35,14 @@ export const useLoginForm = () => {
       {
         onSuccess: (res) => {
           console.log("Login success:", res);
-          // example:
-          localStorage.setItem("AccessToken", res?.accessToken);
+
+          setCookie("accessToken", res?.accessToken, {
+            maxAge: 60 * 60 * 24 * 7, // 1 week
+            sameSite: true,
+            path: "/",
+          });
+
+          // localStorage.setItem("AccessToken", res?.accessToken);
 
           router.push("/dashboard");
         },

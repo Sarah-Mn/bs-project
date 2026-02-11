@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Pagination, Alert } from "@mui/material";
 import { Product } from "@/types/product";
-import { withAuth } from "@/components/auth/withAuth";
 import { fetchProducts } from "@/services/dashboard/products/productsApi";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
 import { ProductSearch } from "@/components/dashboard/products/ProductSearch";
@@ -72,4 +71,4 @@ function ProductsPage() {
   );
 }
 
-export default withAuth(ProductsPage);
+export default ProductsPage;
