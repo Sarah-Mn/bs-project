@@ -9,6 +9,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import InventoryIcon from "@mui/icons-material/Inventory";
+import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import Link from "next/link";
 import { CSSObject, Theme } from "@mui/material/styles";
 
@@ -16,6 +17,7 @@ const menuItems = [
   { label: "Dashboard", icon: <DashboardIcon />, href: "/dashboard" },
   { label: "Users", icon: <PeopleIcon />, href: "/dashboard/users" },
   { label: "Products", icon: <InventoryIcon />, href: "/dashboard/products" },
+  { label: "Games", icon: <VideogameAssetIcon />, href: "/dashboard/games" },
 ];
 
 interface SidebarProps {
