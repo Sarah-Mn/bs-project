@@ -1,0 +1,19 @@
+import { isAuthenticated } from "@/utils/auth";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+export function withAuth<T>(Component: React.ComponentType<T>) {
+  return function ProtectedComponent(props: T) {
+    const router = useRouter();
+
+    useEffect(() => {
+      if (!isAuthenticated()) {
+        router.replace("/auth/login");
+      }
+    }, [router]);
+
+    if (!isAuthenticated()) return null;
+
+    return <Component {...props} />;
+  };
+}
