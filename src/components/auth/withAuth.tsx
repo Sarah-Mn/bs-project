@@ -2,8 +2,8 @@ import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export function withAuth<T>(Component: React.ComponentType<T>) {
-  return function ProtectedComponent(props: T) {
+export function withAuth<T extends object>(Component: React.ComponentType<T>) {
+  const ProtectedComponent = (props: T) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -16,4 +16,6 @@ export function withAuth<T>(Component: React.ComponentType<T>) {
 
     return <Component {...props} />;
   };
+
+  return ProtectedComponent;
 }
