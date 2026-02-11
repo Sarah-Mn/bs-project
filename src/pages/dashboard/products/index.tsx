@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Pagination, Alert } from "@mui/material";
 import { Product } from "@/types/product";
 import { withAuth } from "@/components/auth/withAuth";
@@ -8,8 +8,9 @@ import { ProductSearch } from "@/components/dashboard/products/ProductSearch";
 import { ProductSkeleton } from "@/components/dashboard/products/ProductSkeleton";
 import { ProductTable } from "@/components/dashboard/products/ProductTable";
 import { ProductDetailDrawer } from "@/components/dashboard/products/ProductDetailDrawer";
+import { AxiosError } from "axios";
 
-function ProductsPage({ toggleTheme }: { toggleTheme: () => void }) {
+function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -19,16 +20,28 @@ function ProductsPage({ toggleTheme }: { toggleTheme: () => void }) {
 
   const limit = 10;
 
-  useEffect(() => {
+  const loadProducts = useCallback(async () => {
     setLoading(true);
-    fetchProducts(page, limit, query)
-      .then((data) => setProducts(data.products))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+    try {
+      const data = await fetchProducts(page, limit, query);
+      setProducts(data.products);
+    } catch (error: unknown) {
+      const message =
+        error instanceof AxiosError
+          ? error.message
+          : "An error occurred while fetching users";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   }, [page, query]);
 
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
+
   return (
-    <DashboardLayout toggleTheme={toggleTheme}>
+    <DashboardLayout>
       <h1 className="text-2xl font-semibold mb-4">Products</h1>
 
       <div className="mb-4">
