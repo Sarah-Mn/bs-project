@@ -5,10 +5,14 @@ import { useState } from "react";
 export default function FiltersSidebar() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState(searchParams.get("search") || "");
+
+  const searchParam = searchParams.get("search") || "";
+  const genreParam = searchParams.get("genres") || "";
+
+  const [search, setSearch] = useState(searchParam);
 
   const updateFilter = (key: string, value: string) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
 
     if (value) {
       params.set(key, value);
@@ -22,9 +26,10 @@ export default function FiltersSidebar() {
   };
 
   return (
-    <div className="w-full md:w-64 space-y-4">
+    <div className="w-full flex gap-x-4">
       <TextField
         fullWidth
+        size="small"
         label="Search"
         value={search}
         onChange={(e) => {
@@ -35,7 +40,8 @@ export default function FiltersSidebar() {
 
       <Select
         fullWidth
-        defaultValue=""
+        size="small"
+        value={genreParam}
         onChange={(e) => updateFilter("genres", e.target.value)}
       >
         <MenuItem value="">All Genres</MenuItem>

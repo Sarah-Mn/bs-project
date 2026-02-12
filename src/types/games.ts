@@ -13,11 +13,49 @@ export interface Game {
   rating: number;
   released: string;
   description?:string;
-  platforms: [
-    {platform: {
+  platforms: { 
+    platform: {
+      id: number;
       name: string;
-    };}
-  ];
+    };
+    requirements?: {
+        minimum: string;
+        recommended?: string;
+    }}[];
+  esrb_rating?: {
+    id: number,
+    name: string;
+    slug: string;
+  };
+  genres?: {
+        id: number;
+        name: string;
+        slug: string;
+        games_count: number;
+        image_background: string;
+  }[];
+  developers?:{
+        id: number;
+        name: string;
+        slug: string;
+        games_count: number;
+        image_background: string;
+    }[];
+  stores?: {
+        id: number;
+        store: {
+            id: number;
+            name: string;
+            slug: string;
+            games_count: number;
+            image_background: string;
+            domain: string;
+        }
+        url: string;
+    }[];
+    website?: string;
+    
+
 }
 
 

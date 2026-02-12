@@ -31,7 +31,7 @@ export default function GamesPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col md:flex-row gap-6 p-6">
+      <div className="flex flex-col gap-6 px-6">
         <FiltersSidebar />
 
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -41,11 +41,13 @@ export default function GamesPage() {
         </div>
       </div>
       {totalPages > 1 && (
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={(_, p) => updatePage(p)}
-        />
+        <div className="flex justify-center my-4">
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={(_, p) => updatePage(p)}
+          />
+        </div>
       )}
     </DashboardLayout>
   );
