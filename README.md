@@ -107,10 +107,6 @@ The Page Router directory. Each folder represents a route segment, and `index.ts
 
 Reusable React components organized by type or feature. Components are modular and can be imported across the application.
 
-### `/src/types`
-
-TypeScript type definitions and interfaces for type safety across the application.
-
 ## Available Scripts
 
 - `npm run dev` - Starts the development server
@@ -126,6 +122,10 @@ Create a `.env.local` file in the root directory with the following variables:
 ```env
 NEXT_PUBLIC_API_BASE_URL=https://dummyjson.com
 NEXT_PUBLIC_API_TIMEOUT=10000
+
+RAWG_BASE_URL=https://api.rawg.io/api
+RAWG_API_KEY=YOUR_RAWG_API_KEY_HERE
+
 ```
 
 ## Tech Stack
