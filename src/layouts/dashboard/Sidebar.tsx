@@ -18,6 +18,11 @@ const menuItems = [
   { label: "Users", icon: <PeopleIcon />, href: "/dashboard/users" },
   { label: "Products", icon: <InventoryIcon />, href: "/dashboard/products" },
   { label: "Games", icon: <VideogameAssetIcon />, href: "/dashboard/games" },
+  {
+    label: "The Select",
+    icon: <VideogameAssetIcon />,
+    href: "/dashboard/select",
+  },
 ];
 
 interface SidebarProps {
