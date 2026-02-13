@@ -1,3 +1,12 @@
+export interface GamesFilters {
+  genres?: string;
+  platforms?: string;
+  tags?: string;
+  dates?: string;
+  ordering?: string;
+  search?: string;
+}
+
 export interface RawgGamesResponse {
   count: number;
   next: string | null;
@@ -59,3 +68,15 @@ export interface Game {
 }
 
 
+export interface GameScreenshot {
+  id: number;
+  image: string;
+  width: number;
+  height: number;
+  is_deleted: boolean;
+}
+
+export interface GameScreenshotsResponse {
+  count: number;
+  results: GameScreenshot[];
+}

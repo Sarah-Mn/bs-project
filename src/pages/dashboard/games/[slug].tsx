@@ -1,4 +1,4 @@
-import GameDetails from "@/components/dashboard/games/single-game/GameDetails";
+import { GameDetails } from "@/features/dashboard/games";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
 
 export default function GamePage() {

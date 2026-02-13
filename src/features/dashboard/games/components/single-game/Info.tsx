@@ -1,7 +1,7 @@
-import { Game } from "@/types/games";
 import { Chip } from "@mui/material";
+import { Game } from "../../types";
 
-const Info = ({ game }: { game: Game }) => {
+export const Info = ({ game }: { game: Game }) => {
   return (
     <section className="grid md:grid-cols-2 gap-10">
       {/* LEFT */}
@@ -69,5 +69,3 @@ const Info = ({ game }: { game: Game }) => {
     </section>
   );
 };
-
-export default Info;

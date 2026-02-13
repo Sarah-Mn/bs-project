@@ -1,8 +1,8 @@
-import { Game } from "@/types/games";
 import { Chip, Rating } from "@mui/material";
 import Image from "next/image";
+import { Game } from "../../types";
 
-const Hero = ({ game }: { game: Game }) => {
+export const Hero = ({ game }: { game: Game }) => {
   return (
     <div className="relative h-100 w-full">
       <Image
@@ -28,5 +28,3 @@ const Hero = ({ game }: { game: Game }) => {
     </div>
   );
 };
-
-export default Hero;

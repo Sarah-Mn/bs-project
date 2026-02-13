@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Card, CardContent, Typography, Rating } from "@mui/material";
-import { Game } from "@/types/games";
 import Image from "next/image";
+import { Game } from "../types";
 
-export default function GameCard({ game }: { game: Game }) {
+export function GameCard({ game }: { game: Game }) {
   return (
     <Link href={`/dashboard/games/${game.slug}`}>
       <Card className="rounded-2xl shadow hover:shadow-lg transition min-h-96">

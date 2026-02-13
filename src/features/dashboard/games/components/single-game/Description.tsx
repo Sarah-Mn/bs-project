@@ -1,7 +1,7 @@
-import { Game } from "@/types/games";
+import { Game } from "../../types";
 import Website from "./Website";
 
-const Description = ({ game }: { game: Game }) => {
+export const Description = ({ game }: { game: Game }) => {
   return (
     <section>
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
@@ -19,5 +19,3 @@ const Description = ({ game }: { game: Game }) => {
     </section>
   );
 };
-
-export default Description;

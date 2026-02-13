@@ -2,7 +2,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { TextField, Select, MenuItem } from "@mui/material";
 import { useState } from "react";
 
-export default function FiltersSidebar() {
+export function FiltersSidebar() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

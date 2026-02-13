@@ -1,11 +1,8 @@
-import {
-  GameScreenshot,
-  GameScreenshotsResponse,
-} from "@/types/dashboard/games/gameScreenshots";
-import { useGameScreenshots } from "./useGameScreenshots";
+import { useGameScreenshots } from "../../hooks/useGameScreenshots";
 import Image from "next/image";
+import { GameScreenshot, GameScreenshotsResponse } from "../../types";
 
-const Screenshots = ({ slug }: { slug: string | string[] }) => {
+export const Screenshots = ({ slug }: { slug: string | string[] }) => {
   const {
     data: screenshots,
     isLoading,
@@ -40,5 +37,3 @@ const Screenshots = ({ slug }: { slug: string | string[] }) => {
     )
   );
 };
-
-export default Screenshots;

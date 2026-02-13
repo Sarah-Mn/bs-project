@@ -1,5 +1,5 @@
-import { Game } from "@/types/games";
 import { Button } from "@mui/material";
+import { Game } from "../../types";
 
 const Website = ({ game }: { game: Game }) => {
   return (
