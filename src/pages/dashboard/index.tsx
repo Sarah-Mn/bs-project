@@ -1,5 +1,5 @@
+import { StatCard } from "@/features/dashboard/products";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
-import { StatCard } from "@/components/dashboard/StatCard";
 
 export default function DashboardPage() {
   return (

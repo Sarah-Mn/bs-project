@@ -1,5 +1,5 @@
+import { ProductsApiResponse } from "@/features/dashboard/products";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ProductsApiResponse } from "@/types/product";
 
 export default async function handler(
   req: NextApiRequest,

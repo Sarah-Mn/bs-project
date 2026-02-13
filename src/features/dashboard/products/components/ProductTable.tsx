@@ -6,7 +6,7 @@ import {
   TableRow,
   Avatar,
 } from "@mui/material";
-import { Product } from "@/types/product";
+import { Product } from "../types";
 
 interface Props {
   products: Product[];

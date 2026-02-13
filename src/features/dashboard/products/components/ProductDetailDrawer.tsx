@@ -1,5 +1,6 @@
 import { Drawer, Divider, Typography } from "@mui/material";
-import { Product } from "@/types/product";
+import { Product } from "../types";
+import Image from "next/image";
 
 interface Props {
   product: Product | null;
@@ -13,7 +14,9 @@ export function ProductDetailDrawer({ product, onClose }: Props) {
     <Drawer anchor="right" open={!!product} onClose={onClose}>
       <div className="w-96 p-4 space-y-4">
         <Typography variant="h6">{product.title}</Typography>
-        <img
+        <Image
+          width={100}
+          height={100}
           src={product.thumbnail}
           alt={product.title}
           className="rounded-lg"

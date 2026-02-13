@@ -1,4 +1,4 @@
-import { ProductsApiResponse } from "@/types/product";
+import { ProductsApiResponse } from "../types";
 
 export async function fetchProducts(
   page: number,
