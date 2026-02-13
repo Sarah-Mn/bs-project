@@ -2,6 +2,10 @@
 
 A modern web application built with Next.js, React, and TypeScript for a job project. It contains three different sections: first, a dashboard; second, a list of games; and third, a select component.
 
+## Demo
+
+Live(https://bs-project-seven.vercel.app/)
+
 ## Getting Started
 
 ### Prerequisites

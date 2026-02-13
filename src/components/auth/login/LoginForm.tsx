@@ -29,7 +29,7 @@ const LoginForm = () => {
           fullWidth
           type="username"
           error={!!errors.username}
-          helperText={errors.username?.message}
+          helperText={errors.username?.message || "example: emilys"}
           {...register("username", {
             required: "username is required",
           })}
@@ -41,7 +41,7 @@ const LoginForm = () => {
           fullWidth
           type={showPassword ? "text" : "password"}
           error={!!errors.password}
-          helperText={errors.password?.message}
+          helperText={errors.password?.message || "example: emilyspass"}
           {...register("password", {
             required: "Password is required",
             minLength: {
