@@ -56,7 +56,7 @@ pnpm dev
 │   │   ├── api/          # API routes
 │   │   │   └── [...]
 │   │   └── [...]/        # Other pages/routes
-│   │       ├── index.tsx
+│   │         ├── index.tsx
 │   │
 │   ├── styles/        # CSS styles
 │   │   └── globals.css   # Global styles
@@ -70,17 +70,16 @@ pnpm dev
 │   │
 │   ├── components/        # Reusable React components
 │   │   ├── ui/           # UI components (buttons, inputs, etc.)
-│   │   ├── forms/        # Form components
-│   │   └── features/     # Feature-specific components
+│   │       └── [...]
 │   │
-│   ├── services/              # Utility functions and libraries
-│   │   └── api/        # API client functions
-│   │   │    └── api.ts  #Global Axios api service
+│   ├── features/        # Feature-specific components
 │   │   └── [...]
 │   │
-│   │
-│   ├── types/            # TypeScript type definitions
+│   └── services/              # Utility functions and libraries
+│       └── api/        # API client functions
+│       │    └── api.ts  #Global Axios api service
 │       └── [...]
+│
 │
 ├── .env.local            # Environment variables (local)
 ├── .env.example          # Example environment variables
