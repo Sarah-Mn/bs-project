@@ -1,4 +1,4 @@
-import { UsersApiResponse } from "@/types/user";
+import { UsersApiResponse } from "../types";
 
 export async function fetchUsers(
   page: number,

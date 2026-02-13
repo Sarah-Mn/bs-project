@@ -1,5 +1,5 @@
+import { UsersApiResponse } from "@/features/dashboard/users/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { UsersApiResponse } from "@/types/user";
 
 export default async function handler(
   req: NextApiRequest,

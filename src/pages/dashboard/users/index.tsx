@@ -1,61 +1,50 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { Pagination, Alert } from "@mui/material";
-import { User } from "@/types/user";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
-import { UserSearch } from "@/components/dashboard/users/UserSearch";
-import { UserSkeleton } from "@/components/dashboard/users/UserSkeleton";
-import { UserTable } from "@/components/dashboard/users/UsersTable";
-import { UserDetailDrawer } from "@/components/dashboard/users/UserDetailDrawer";
-import { fetchUsers } from "@/services/dashboard/users/usersApi";
-import { AxiosError } from "axios";
+import {
+  UserSearch,
+  UserSkeleton,
+  UserTable,
+  UserDetailDrawer,
+  useUsers,
+  User,
+} from "@/features/dashboard/users";
 
 export default function UsersPage() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
+  const {
+    users,
+    loading,
+    error,
+    page,
+    setPage,
+    query,
+    handleQueryChange,
+    totalPages,
+  } = useUsers(10);
+
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-
-  const limit = 10;
-
-  const loadUsers = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await fetchUsers(page, limit, query);
-      setUsers(data.users);
-    } catch (error: unknown) {
-      const message =
-        error instanceof AxiosError
-          ? error.message
-          : "An error occurred while fetching users";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, [page, query]);
-
-  useEffect(() => {
-    loadUsers();
-  }, [loadUsers]);
 
   return (
     <DashboardLayout>
       <h1 className="text-2xl font-semibold mb-4">Users</h1>
 
       <div className="mb-4">
-        <UserSearch value={query} onChange={setQuery} />
+        <UserSearch value={query} onChange={handleQueryChange} />
       </div>
 
       {error && <Alert severity="error">{error}</Alert>}
-      {loading ? (
-        <UserSkeleton />
-      ) : (
+      {loading && <UserSkeleton />}
+
+      {!loading && users.length === 0 && (
+        <Alert severity="info">No users found.</Alert>
+      )}
+
+      {!loading && users.length > 0 && (
         <>
           <UserTable users={users} onSelect={setSelectedUser} />
           <div className="flex justify-center mt-6">
             <Pagination
-              count={10}
+              count={totalPages}
               page={page}
               onChange={(_, p) => setPage(p)}
             />
@@ -63,10 +52,12 @@ export default function UsersPage() {
         </>
       )}
 
-      <UserDetailDrawer
-        user={selectedUser}
-        onClose={() => setSelectedUser(null)}
-      />
+      {selectedUser && (
+        <UserDetailDrawer
+          user={selectedUser}
+          onClose={() => setSelectedUser(null)}
+        />
+      )}
     </DashboardLayout>
   );
 }

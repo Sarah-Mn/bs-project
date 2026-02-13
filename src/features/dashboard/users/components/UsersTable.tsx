@@ -1,4 +1,3 @@
-import { User } from "@/types/user";
 import {
   Table,
   TableBody,
@@ -7,6 +6,7 @@ import {
   TableRow,
   Avatar,
 } from "@mui/material";
+import { User } from "../types";
 
 interface Props {
   users: User[];

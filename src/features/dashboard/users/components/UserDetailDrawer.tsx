@@ -1,5 +1,5 @@
 import { Drawer, Typography, Divider } from "@mui/material";
-import { User } from "@/types/user";
+import { User } from "../types";
 
 interface Props {
   user: User | null;
