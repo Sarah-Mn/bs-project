@@ -77,7 +77,13 @@ pnpm dev
 │   │       └── [...]
 │   │
 │   ├── features/        # Feature-specific components
-│   │   └── [...]
+│   │   └── specific-feature/
+│   │       ├── __tests__/
+│   │       ├── components/
+│   │       ├── services/
+│   │       ├── hooks/
+│   │       ├── index.ts
+│   │       └── types.ts
 │   │
 │   └── services/              # Utility functions and libraries
 │       └── api/        # API client functions
