@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import {
   Listbox,
   ListboxButton,
@@ -7,19 +7,10 @@ import {
 } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useVirtualizer } from "@tanstack/react-virtual";
-
-export interface SelectOption {
-  id: string;
-  label: string;
-  group?: string;
-}
-
-interface Props {
-  options: SelectOption[];
-  value: SelectOption[];
-  onChange: (value: SelectOption[]) => void;
-  placeholder?: string;
-}
+import { Props, SelectOption } from "./types";
+import { useFilteredOptions } from "./useFilteredOptions";
+import { useGroupedOptions } from "./useGroupedOptions";
+import { useFlattenedOptions } from "./useFlattenedOptions";
 
 export default function Select({
   options,
@@ -31,37 +22,13 @@ export default function Select({
   const parentRef = useRef<HTMLDivElement>(null);
 
   //  Filtering
-  const filteredOptions = useMemo(() => {
-    if (!query) return options;
-    return options.filter((opt) =>
-      opt.label.toLowerCase().includes(query.toLowerCase()),
-    );
-  }, [options, query]);
+  const filteredOptions = useFilteredOptions(options, query);
 
   //  Grouping
-  const groupedOptions = useMemo(() => {
-    const groups: Record<string, SelectOption[]> = {};
-
-    filteredOptions.forEach((opt) => {
-      const group = opt.group || "Other";
-      if (!groups[group]) groups[group] = [];
-      groups[group].push(opt);
-    });
-
-    return Object.entries(groups);
-  }, [filteredOptions]);
+  const groupedOptions = useGroupedOptions(filteredOptions);
 
   //  Flatten for Virtualization
-  const flattened = useMemo(() => {
-    const rows: (SelectOption | { groupLabel: string })[] = [];
-
-    groupedOptions.forEach(([group, items]) => {
-      rows.push({ groupLabel: group });
-      rows.push(...items);
-    });
-
-    return rows;
-  }, [groupedOptions]);
+  const flattened = useFlattenedOptions(groupedOptions);
 
   //  Virtualizer
   const rowVirtualizer = useVirtualizer({
