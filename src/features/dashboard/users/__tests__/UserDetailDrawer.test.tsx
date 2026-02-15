@@ -1,10 +1,75 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserDetailDrawer } from "../components/UserDetailDrawer";
-import { mockUser } from "./mockData";
+import { User } from "../types";
 
 describe("UserDetailDrawer", () => {
   const mockOnClose = jest.fn();
+
+  const mockUser: User = {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    maidenName: "Smith",
+    age: 30,
+    gender: "male",
+    email: "john.doe@example.com",
+    phone: "+1 234 567 890",
+    username: "johndoe",
+    birthDate: "1990-01-01",
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    bloodGroup: "A+",
+    height: 180,
+    weight: 75,
+    eyeColor: "brown",
+    hair: {
+      color: "black",
+      type: "straight",
+    },
+    address: {
+      address: "123 Main St",
+      city: "New York",
+      state: "NY",
+      stateCode: "NY",
+      postalCode: "10001",
+      country: "USA",
+      coordinates: {
+        lat: 40.7128,
+        lng: -74.006,
+      },
+    },
+    university: "Example University",
+    bank: {
+      cardExpire: "12/25",
+      cardNumber: "1234 5678 9012 3456",
+      cardType: "Visa",
+      currency: "USD",
+      iban: "US00 1234 5678 9012 3456 78",
+    },
+    company: {
+      name: "Acme Inc",
+      title: "Software Engineer",
+      department: "Engineering",
+      address: {
+        address: "123 Main St",
+        city: "New York",
+        state: "NY",
+        stateCode: "NY",
+        postalCode: "10001",
+        country: "USA",
+        coordinates: {
+          lat: 40.7128,
+          lng: -74.006,
+        },
+      },
+    },
+    crypto: {
+      coin: "Bitcoin",
+      wallet: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+      network: "Bitcoin",
+    },
+    role: "admin",
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
