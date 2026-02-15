@@ -1,6 +1,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import { TextField, Select, MenuItem } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 import { useState } from "react";
+import Input from "@/components/ui/input/Input";
 
 export function FiltersSidebar() {
   const router = useRouter();
@@ -27,17 +28,14 @@ export function FiltersSidebar() {
 
   return (
     <div className="w-full flex gap-x-4">
-      <TextField
-        fullWidth
-        size="small"
-        label="Search"
+      <Input
+        placeholder="Search games..."
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
           updateFilter("search", e.target.value);
         }}
       />
-
       <Select
         fullWidth
         size="small"

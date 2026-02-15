@@ -1,12 +1,7 @@
-import {
-  TextField,
-  Button,
-  IconButton,
-  InputAdornment,
-  CircularProgress,
-} from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
+import Input from "@/components/ui/input/Input";
 
 const LoginForm = () => {
   const {
@@ -24,24 +19,22 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="flex flex-col gap-y-5">
         {/* Username */}
-        <TextField
+        <Input
           label="Username"
-          fullWidth
+          placeholder="example: emilys"
           type="username"
-          error={!!errors.username}
-          helperText={errors.username?.message || "example: emilys"}
+          error={errors.username?.message}
           {...register("username", {
             required: "username is required",
           })}
         />
 
         {/* Password */}
-        <TextField
+        <Input
           label="Password"
-          fullWidth
+          placeholder="example: emilyspass"
           type={showPassword ? "text" : "password"}
-          error={!!errors.password}
-          helperText={errors.password?.message || "example: emilyspass"}
+          error={errors.password?.message}
           {...register("password", {
             required: "Password is required",
             minLength: {
@@ -49,20 +42,15 @@ const LoginForm = () => {
               message: "Password must be at least 8 characters",
             },
           })}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            },
-          }}
+          endAdornment={
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </button>
+          }
         />
       </div>
 

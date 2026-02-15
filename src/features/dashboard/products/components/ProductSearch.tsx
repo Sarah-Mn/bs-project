@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import Input from "@/components/ui/input/Input";
 
 interface Props {
   value: string;
@@ -7,9 +7,7 @@ interface Props {
 
 export function ProductSearch({ value, onChange }: Props) {
   return (
-    <TextField
-      fullWidth
-      size="small"
+    <Input
       placeholder="Search products..."
       value={value}
       onChange={(e) => onChange(e.target.value)}
