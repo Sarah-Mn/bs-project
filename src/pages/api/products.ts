@@ -1,6 +1,8 @@
 import { ProductsApiResponse } from "@/features/dashboard/products";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+const baseUrl = process.env.API_BASE_URL || "https://dummyjson.com";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ProductsApiResponse | { message: string }>
@@ -10,8 +12,8 @@ export default async function handler(
     const skip = (Number(page) - 1) * Number(limit);
 
     const url = q
-      ? `https://dummyjson.com/products/search?q=${q}&limit=${limit}&skip=${skip}`
-      : `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+      ? `${baseUrl}/products/search?q=${q}&limit=${limit}&skip=${skip}`
+      : `${baseUrl}/products?limit=${limit}&skip=${skip}`;
 
     const response = await fetch(url);
     const data = await response.json();

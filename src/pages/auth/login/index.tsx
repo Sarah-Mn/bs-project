@@ -1,4 +1,4 @@
-import Container from "@/components/auth/login/Container";
+import { Container } from "@/features/auth/login";
 import type { NextPage } from "next";
 
 const LoginPage: NextPage = () => {

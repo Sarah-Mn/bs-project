@@ -1,9 +1,9 @@
 import { Button, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useLoginForm } from "./useLoginForm";
 import Input from "@/components/ui/input/Input";
+import { useLoginForm } from "../hooks/useLoginForm";
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -74,5 +74,3 @@ const LoginForm = () => {
     </form>
   );
 };
-
-export default LoginForm;

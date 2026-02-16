@@ -1,6 +1,9 @@
 import { UsersApiResponse } from "@/features/dashboard/users/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+
+const baseUrl = process.env.API_BASE_URL || "https://dummyjson.com";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<UsersApiResponse | { message: string }>
@@ -11,8 +14,8 @@ export default async function handler(
     const skip = (Number(page) - 1) * Number(limit);
 
     const url = q
-      ? `https://dummyjson.com/users/search?q=${q}&limit=${limit}&skip=${skip}`
-      : `https://dummyjson.com/users?limit=${limit}&skip=${skip}`;
+      ? `${baseUrl}/users/search?q=${q}&limit=${limit}&skip=${skip}`
+      : `${baseUrl}/users?limit=${limit}&skip=${skip}`;
 
     const response = await fetch(url);
     const data = await response.json();
