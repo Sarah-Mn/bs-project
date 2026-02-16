@@ -1,7 +1,8 @@
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Input from "@/components/ui/input/Input";
 import { useLoginForm } from "../hooks/useLoginForm";
+import { Button } from "@/components/ui/button/Button";
 
 export const LoginForm = () => {
   const {
@@ -64,10 +65,9 @@ export const LoginForm = () => {
       {/* Submit */}
       <Button
         type="submit"
-        variant="contained"
-        fullWidth
+        variant="primary"
         disabled={isPending}
-        className="mt-2!"
+        className="mt-2! cursor-pointer"
       >
         {isPending ? <CircularProgress size={24} color="inherit" /> : "Login"}
       </Button>
