@@ -12,7 +12,7 @@ export interface ButtonProps extends BaseProps {
   size?: Size;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const variantClasses: Record<Variant, string> = {
