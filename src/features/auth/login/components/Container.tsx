@@ -1,6 +1,6 @@
-import LoginForm from "./LoginForm";
+import { LoginForm } from "./LoginForm";
 
-const Container = () => {
+export const Container = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
@@ -10,5 +10,3 @@ const Container = () => {
     </div>
   );
 };
-
-export default Container;

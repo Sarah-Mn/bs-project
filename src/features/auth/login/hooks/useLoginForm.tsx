@@ -1,8 +1,8 @@
-import { useLogin } from "@/services/auth/login/login.mutations";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
+import { useLoginMutation } from "../services/login.mutations";
 
 interface LoginFormInputs {
   username: string;
@@ -12,7 +12,7 @@ interface LoginFormInputs {
 
 export const useLoginForm = () => {
   const router = useRouter();
-  const { mutate, isPending, error } = useLogin();
+  const { mutate, isPending, error } = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -41,8 +41,6 @@ export const useLoginForm = () => {
             sameSite: true,
             path: "/",
           });
-
-          // localStorage.setItem("AccessToken", res?.accessToken);
 
           router.push("/dashboard");
         },
