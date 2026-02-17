@@ -11,6 +11,7 @@ export function UserSearch({ value, onChange }: Props) {
       placeholder="Search users..."
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      data-testid="user-search"
     />
   );
 }
