@@ -13,3 +13,10 @@ export type LoginApiResponse = {
   image: string;
   accessToken: string;
 };
+
+
+export interface LoginFormInputs {
+  username: string;
+  password: string;
+  rememberMe?: boolean;
+}

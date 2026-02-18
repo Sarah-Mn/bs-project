@@ -17,7 +17,11 @@ export const LoginForm = () => {
   } = useLoginForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form
+      data-testid="login-form"
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4"
+    >
       <div className="flex flex-col gap-y-5">
         {/* Username */}
         <Input
@@ -64,6 +68,7 @@ export const LoginForm = () => {
 
       {/* Submit */}
       <Button
+        data-testid="login-form-submit-btn"
         type="submit"
         variant="primary"
         disabled={isPending}

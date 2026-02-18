@@ -3,12 +3,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
 import { useLoginMutation } from "../services/login.mutations";
-
-interface LoginFormInputs {
-  username: string;
-  password: string;
-  rememberMe: boolean;
-}
+import { LoginFormInputs } from "../types";
 
 export const useLoginForm = () => {
   const router = useRouter();
