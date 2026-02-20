@@ -7,6 +7,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { User } from "../types";
+import { useRouter } from "next/router";
 
 interface Props {
   users: User[];
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export function UserTable({ users, onSelect }: Props) {
+  const router = useRouter();
   return (
     <Table>
       <TableHead>
@@ -29,7 +31,10 @@ export function UserTable({ users, onSelect }: Props) {
             key={user.id}
             hover
             className="cursor-pointer"
-            onClick={() => onSelect(user)}
+            onClick={() => {
+              onSelect(user);
+              router.push(`/dashboard/users/${user.id}`);
+            }}
           >
             <TableCell className="flex items-center gap-3">
               <Avatar src={user.image} />
