@@ -11,10 +11,9 @@ import { useRouter } from "next/router";
 
 interface Props {
   users: User[];
-  onSelect: (user: User) => void;
 }
 
-export function UserTable({ users, onSelect }: Props) {
+export function UserTable({ users }: Props) {
   const router = useRouter();
   return (
     <Table>
@@ -32,7 +31,6 @@ export function UserTable({ users, onSelect }: Props) {
             hover
             className="cursor-pointer"
             onClick={() => {
-              onSelect(user);
               router.push(`/dashboard/users/${user.id}`);
             }}
           >

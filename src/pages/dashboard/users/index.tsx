@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { Pagination, Alert } from "@mui/material";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
 import {
   UserSearch,
   UserSkeleton,
   UserTable,
-  UserDetailDrawer,
   useUsers,
-  User,
 } from "@/features/dashboard/users";
 
 export default function UsersPage() {
@@ -21,8 +18,6 @@ export default function UsersPage() {
     handleQueryChange,
     totalPages,
   } = useUsers(10);
-
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   return (
     <DashboardLayout>
@@ -41,7 +36,7 @@ export default function UsersPage() {
 
       {!loading && users.length > 0 && (
         <>
-          <UserTable users={users} onSelect={setSelectedUser} />
+          <UserTable users={users} />
           <div className="flex justify-center mt-6">
             <Pagination
               count={totalPages}
@@ -50,13 +45,6 @@ export default function UsersPage() {
             />
           </div>
         </>
-      )}
-
-      {selectedUser && (
-        <UserDetailDrawer
-          user={selectedUser}
-          onClose={() => setSelectedUser(null)}
-        />
       )}
     </DashboardLayout>
   );
