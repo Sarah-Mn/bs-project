@@ -1,8 +1,10 @@
-export interface Dimensions {
-  width: number;
-  height: number;
-  depth: number;
+export interface ProductsApiResponse {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
 }
+
 
 export interface Review {
   rating: number;
@@ -12,7 +14,13 @@ export interface Review {
   reviewerEmail: string;
 }
 
-export interface Meta {
+export interface Dimensions {
+  width: number;
+  height: number;
+  depth: number;
+}
+
+export interface ProductMeta {
   createdAt: string;
   updatedAt: string;
   barcode: string;
@@ -39,14 +47,7 @@ export interface Product {
   reviews: Review[];
   returnPolicy: string;
   minimumOrderQuantity: number;
-  meta: Meta;
-  images: string[];
+  meta: ProductMeta;
   thumbnail: string;
-}
-
-export interface ProductsApiResponse {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
+  images: string[];
 }

@@ -3,7 +3,6 @@ import { Pagination, Alert } from "@mui/material";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
 import {
   Product,
-  ProductDetailDrawer,
   ProductSearch,
   ProductSkeleton,
   ProductTable,
@@ -40,7 +39,7 @@ function ProductsPage() {
 
       {!loading && products.length > 0 && (
         <>
-          <ProductTable products={products} onSelect={setSelectedProduct} />
+          <ProductTable products={products} />
           <div className="flex justify-center mt-6">
             <Pagination
               count={totalPages}
@@ -49,13 +48,6 @@ function ProductsPage() {
             />
           </div>
         </>
-      )}
-
-      {selectedProduct && (
-        <ProductDetailDrawer
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-        />
       )}
     </DashboardLayout>
   );

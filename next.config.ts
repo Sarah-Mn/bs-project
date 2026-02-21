@@ -4,7 +4,20 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   images: {
-    domains: ["media.rawg.io",  "cdn.dummyjson.com","dummyjson.com"],
+    remotePatterns: [
+      {
+      protocol: 'https',
+      hostname: "media.rawg.io",
+    },
+      {
+      protocol: 'https',
+      hostname: "cdn.dummyjson.com",
+    },
+      {
+      protocol: 'https',
+      hostname: "dummyjson.com",
+    },
+     ],
   },
 };
 
