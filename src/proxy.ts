@@ -6,7 +6,7 @@ const publicRoutes = ['/auth/login', '/'];
 // Protected routes that require authentication
 const protectedRoutes = ['/dashboard'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Get the auth token from cookies

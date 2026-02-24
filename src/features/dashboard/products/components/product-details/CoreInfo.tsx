@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "../../types";
 import Label from "./Label";
 import Input from "@/components/ui/input/Input";
 import Display from "./Display";
 import EditableField from "@/components/ui/editableField/EditableField";
 import Image from "next/image";
+import { useSingleProductStore } from "../../store/singleProduct.store";
 
 export const CoreInfo = ({
   product,
@@ -13,19 +14,36 @@ export const CoreInfo = ({
   product: Product;
   editMode: boolean;
 }) => {
-  const [formState, setFormState] = useState(product);
+  // const [formState, setFormState] = useState(product);
+
+  const {
+    product: formState,
+    discountedPrice,
+    initialize,
+    updateField,
+  } = useSingleProductStore();
+
+  // const handleChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  // ) => {
+  //   updateField(e.target.name as keyof Product, e.target.value);
+  //     ...formState,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // // };
+
+  useEffect(() => {
+    initialize(product);
+  }, [product, initialize]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
+    updateField(e.target.name as keyof Product, e.target.value);
   };
 
-  const discountedPrice =
-    formState.price - (formState.price * formState.discountPercentage) / 100;
+  // const discountedPrice =
+  //   formState.price - (formState.price * formState.discountPercentage) / 100;
   return (
     <div className="grid md:grid-cols-3 gap-10 mt-10">
       {/* LEFT COLUMN - Images */}
@@ -63,7 +81,7 @@ export const CoreInfo = ({
           {editMode ? (
             <Input
               name="title"
-              value={formState.title}
+              value={formState?.title}
               onChange={handleChange}
             />
           ) : (
@@ -77,7 +95,7 @@ export const CoreInfo = ({
           {editMode ? (
             <textarea
               name="description"
-              value={formState.description}
+              value={formState?.description}
               onChange={handleChange}
               className="w-full border rounded-lg p-3 text-sm"
             />
@@ -91,14 +109,14 @@ export const CoreInfo = ({
           <EditableField
             label="Price"
             name="price"
-            value={formState.price}
+            value={formState?.price || 0}
             editMode={editMode}
             onChange={handleChange}
           />
           <EditableField
             label="Discount %"
             name="discountPercentage"
-            value={formState.discountPercentage}
+            value={formState?.discountPercentage || 0}
             editMode={editMode}
             onChange={handleChange}
           />
@@ -112,7 +130,7 @@ export const CoreInfo = ({
         <EditableField
           label="Stock"
           name="stock"
-          value={formState.stock}
+          value={formState?.stock || 0}
           editMode={editMode}
           onChange={handleChange}
         />
