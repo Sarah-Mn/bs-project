@@ -1,3 +1,4 @@
+import { http } from "@/lib/http";
 import { UsersApiResponse } from "../types";
 
 export async function fetchUsers(
@@ -5,13 +6,9 @@ export async function fetchUsers(
   limit: number,
   query: string
 ): Promise<UsersApiResponse> {
-  const res = await fetch(
-    `/api/users?page=${page}&limit=${limit}&q=${query}`
+  const res = await http.get(
+    `/users?page=${page}&limit=${limit}&q=${query}`
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to load users");
-  }
-
-  return res.json();
+  return res.data;
 }

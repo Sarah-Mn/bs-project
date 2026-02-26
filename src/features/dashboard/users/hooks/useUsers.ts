@@ -1,21 +1,12 @@
 import { useState } from "react";
-import { fetchUsers } from "../services/users.api";
-import { useQuery } from "@tanstack/react-query";
+import {  useGetUsers } from "../services/users.queries";
 
 export function useUsers(limit = 10) {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
 
- const {
-    data,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["users", page, query],
-    queryFn: () => fetchUsers(page, limit, query),
-  });
+const {data,isLoading,isError,error} = useGetUsers(page, limit, query)
 
   const totalPages = data ? Math.ceil(data.total / limit) : 0;
 
