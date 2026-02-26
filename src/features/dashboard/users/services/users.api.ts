@@ -9,6 +9,7 @@ export async function fetchUsers(
   const res = await http.get(
     `/users?page=${page}&limit=${limit}&q=${query}`
   );
+  
 
   return res.data;
 }
