@@ -9,6 +9,13 @@ export default async function handler(
   res: NextApiResponse<UsersApiResponse | { message: string }>
 ) {
   try {
+      const authHeader = req.headers.cookie;
+      
+
+    if (!authHeader) {
+        return res.status(401).json({ message: "Unauthorized" });
+    };
+    
     const { page = "1", limit = "10", q = "" } = req.query;
 
     const skip = (Number(page) - 1) * Number(limit);

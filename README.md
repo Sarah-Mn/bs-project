@@ -147,6 +147,10 @@ RAWG_API_KEY=YOUR_RAWG_API_KEY_HERE
 - **API**: REST
 - **Deployment**: Vercel
 
+## Server's Request Flow
+
+`useQuery() → React Query → axios instance → /api/endpoint`
+
 ## Learn More
 
 - [Next.js Documentation](https://nextjs.org/docs)
