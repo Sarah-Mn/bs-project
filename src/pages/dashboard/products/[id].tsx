@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { useState } from "react";
+import { use, useState } from "react";
 import {
   CoreInfo,
   Header,
@@ -8,6 +8,8 @@ import {
 } from "@/features/dashboard/products";
 import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout";
 import { Button } from "@/components/ui/button/Button";
+import { useUpdateProduct } from "@/features/dashboard/products/services/update-product.queries";
+import { useSingleProductStore } from "@/features/dashboard/products/store/singleProduct.store";
 
 interface Props {
   product: Product;
@@ -15,6 +17,12 @@ interface Props {
 
 export default function AdminProductPage({ product }: Props) {
   const [editMode, setEditMode] = useState(false);
+  const { product: productFromStore } = useSingleProductStore();
+
+  const { mutate } = useUpdateProduct({
+    id: product.id,
+    title: productFromStore?.title || product.title,
+  });
 
   return (
     <DashboardLayout>
@@ -35,7 +43,10 @@ export default function AdminProductPage({ product }: Props) {
         {/* SAVE BUTTON */}
         {editMode && (
           <div className="mt-10 flex justify-end">
-            <Button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg">
+            <Button
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg"
+              onClick={mutate}
+            >
               Save Changes
             </Button>
           </div>
