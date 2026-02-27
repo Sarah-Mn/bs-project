@@ -12,7 +12,7 @@ const PersonalInfo = ({ user }: { user: User }) => {
       <Info label="Height" value={`${user.height} cm`} />
       <Info label="Weight" value={`${user.weight} kg`} />
       <Info label="Eye Color" value={user.eyeColor} />
-      <Info label="Hair" value={`${user.hair.color} - ${user.hair.type}`} />
+      <Info label="Hair" value={`${user?.hair?.color} - ${user?.hair?.type}`} />
       <Info label="University" value={user.university} />
     </div>
   );

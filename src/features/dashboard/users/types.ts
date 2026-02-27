@@ -67,25 +67,26 @@ export interface Crypto {
 export interface User {
   id: number;
   firstName: string;
-  lastName: string;
-  maidenName: string;
-  age: number;
-  gender: string;
   email: string;
-  phone: string;
   username: string;
   birthDate: string;
-  image: string;
-  bloodGroup: string;
-  height: number;
-  weight: number;
-  eyeColor: string;
-  hair: {
+  role: "admin" | "moderator" | "user";
+  lastName?: string;
+  maidenName?: string;
+  age?: number;
+  ip?: string;
+  gender?: string;
+  phone?: string;
+  image?: string;
+  bloodGroup?: string;
+  height?: number;
+  weight?: number;
+  eyeColor?: string;
+  hair?: {
     color: string;
     type: string;
   };
-  ip: string;
-  address: {
+  address?: {
     address: string;
     city: string;
     state: string;
@@ -93,15 +94,15 @@ export interface User {
     postalCode: string;
     country: string;
   };
-  university: string;
-  bank: {
+  university?: string;
+  bank?: {
     cardExpire: string;
     cardNumber: string;
     cardType: string;
     currency: string;
     iban: string;
   };
-  company: {
+  company?: {
     department: string;
     name: string;
     title: string;
@@ -113,7 +114,6 @@ export interface User {
       country: string;
     };
   };
-  role: "admin" | "moderator" | "user";
 }
 
 
